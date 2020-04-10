@@ -29,15 +29,15 @@ Now `[anydomain].test` will be forwarded to localhost.
 - `brew install haproxy`
 - create a `/usr/local/etc/haproxy.cfg` with these contents
   ```
-frontend http-in
-    bind *:80
+  frontend http-in
+      bind *:80
 
-    acl is_php hdr_end(host) -i .test
+      acl is_php hdr_end(host) -i .test
 
-    use_backend php if is_php
+      use_backend php if is_php
 
-backend php
-    server router_server 127.0.0.1:8056
+  backend php
+      server router_server 127.0.0.1:8056
   ```
 - `brew services start haproxy`
 
