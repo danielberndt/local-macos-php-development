@@ -24,21 +24,15 @@ Put this repo into the parent directory and execute the steps below. You'll now 
 
 Now `[anydomain].test` will be forwarded to localhost.
 
-## Setup haproxy
+## Setup caddy
 
-- `brew install haproxy`
-- create a `/usr/local/etc/haproxy.cfg` with these contents
+- `brew install caddy`
+- create a `/usr/local/etc/Caddyfile` with these contents
   ```
-  frontend http-in
-      bind *:80
-
-      acl is_php hdr_end(host) -i .test
-
-      use_backend php if is_php
-
-  backend php
-      server router_server 127.0.0.1:8056
+  http://*.test {
+    reverse_proxy 127.0.0.1:8056
+  }
   ```
-- `brew services start haproxy`
+- `brew services start caddy`
 
-Now `[anydomain].test` will be forwarded to [anydomain].test:8056 where the docker container above will be awaiting.
+Now `[anydomain].test` will be forwarded to `[anydomain].test:8056` where the docker container above will be awaiting.
