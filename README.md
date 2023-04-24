@@ -15,12 +15,13 @@ Put this repo into the parent directory and execute the steps below. You'll now 
 - `brew install dnsmasq`
 - `sudo mkdir /etc/resolver`
 - `sudo sh -c 'echo "nameserver 127.0.0.1" >> /etc/resolver/test'`
+- `sudo sh -c 'echo "search_order 1" >> /etc/resolver/test'`
 - `sudo brew services start dnsmasq`
 - `cd $(brew --prefix)`
 - `echo 'address=/test/127.0.0.1' >> etc/dnsmasq.conf`
 - `sudo brew services start dnsmasq`
 
-- Restart the machine 😒
+- Restart the machine 😒 (or maybe `dscacheutil -flushcache` works?)
 
 Now `[anydomain].test` will be forwarded to localhost.
 
