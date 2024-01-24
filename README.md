@@ -23,6 +23,8 @@ Put this repo into the parent directory and execute the steps below. You'll now 
 
 - Restart the machine 😒 (or maybe `dscacheutil -flushcache` works?)
 
+> If there's a 5s delay before resolving local domains, add 127.0.0.1 as the first entry into the DNS Servers within your Network settings
+
 Now `[anydomain].test` will be forwarded to localhost.
 
 ## Setup caddy
